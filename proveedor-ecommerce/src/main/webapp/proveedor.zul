@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./win_periodos"?-->
+<!--?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?-->
+
+<zk xmlns="http://www.zkoss.org/2005/zul"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
+	
+	<window id="win" apply="com.gapsi.ecommerce.controlador.ProveedorControlador">
+	
+		<image src="/imagenes/01-container-2.png" width="100%" height="10%"/>
+		
+		<panel border="normal" title="Administración de Proveedores" width="98%" style="margin-bottom:20px" >
+			<panelchildren>
+				<grid>
+					<columns>
+						<column width="10%" align="left" />
+						<column width="40%" align="left" />
+						<column width="10%" align="left" />
+						<column width="40%" align="left" />
+
+					</columns>
+					<rows>
+						<row>
+							Nombre:
+							<textbox id="tbNombre" value="${win$composer.proveedorDto.nombre}" cols="50" maxlength="50" />
+							Razón Social:
+							<textbox id="tbRazonSocial" value="${win$composer.proveedorDto.razonSocial}" cols="50" maxlength="50" />
+						</row>
+						
+						<row>
+							Dirección:
+							<textbox id="tbDireccion" value="${win$composer.proveedorDto.direccion}" cols="50" maxlength="50"  />
+							<space></space>
+							<space></space>
+						</row>
+
+						<row spans="4">
+							<div align="right">
+								<label id="lbMensaje" />
+								<button id="btnNuevo" label="Nuevo" />
+								<button id="btnAgregar" label="Agregar" />
+								<button id="btnEliminar" label="Eliminar" />
+							</div>
+						</row>
+					</rows>
+				</grid>
+			</panelchildren>
+		</panel>
+		
+		<listbox id="proveedorListbox" mold="paging" pageSize="5" style="margin-top:10px">
+        <listhead>
+            <listheader label="Id" width="10%"/>
+            <listheader label="Nombre" width="30%"/>
+            <listheader label="Razon Social" width="30%"/>
+            <listheader label="Dirección" width="30%"/>
+        </listhead>
+        <template name="model">
+            <listitem>
+                <listcell label="${each.id}" ></listcell>
+                <listcell label="${each.nombre}" ></listcell>
+                <listcell label="${each.razonSocial}" ></listcell>
+                <listcell label="${each.direccion}" ></listcell>
+            </listitem>
+        </template>
+    </listbox>
+
+	</window>
+
+</zk>

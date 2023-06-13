@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--?init class="org.zkoss.zkplus.databind.AnnotateDataBinderInit" arg0="./win_periodos"?-->
+<!--?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?-->
+
+<zk xmlns="http://www.zkoss.org/2005/zul"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.zkoss.org/2005/zul http://www.zkoss.org/2005/zul/zul.xsd">
+	
+	<window id="win" apply="com.gapsi.ecommerce.controlador.LoginControlador">
+	
+		<image src="/imagenes/01-container-2.png" width="100%" height="10%"/>
+	
+		<div align="center">
+		<panel border="none" width="60%" style="margin-bottom:20px" >
+			<panelchildren>
+				<grid>
+					<columns>
+						<column width="10%" align="left" />
+						<column width="10%" align="left" />
+					</columns>
+					<rows>
+						<row spans="2">
+							<div align="center">
+								<image src="/imagenes/02-visitors-2.png" width="40%" height="10%"/>
+							</div>
+						</row>
+						<row spans="2">
+							<div align="center">
+								<label id="lbBienvenida" />
+							</div>
+						</row>
+						<row spans="2">
+							<div align="center">
+								<button id="aceptar" label="Continuar" />
+							</div>
+						</row>
+						<row spans="2">
+							<div align="right">
+								<label id="lbVersion" />
+							</div>
+						</row>						
+					</rows>
+				</grid>
+			</panelchildren>
+		</panel>
+		</div>
+
+	</window>
+
+</zk>		
