@@ -101,8 +101,7 @@ public class ProveedorControlador {
 			}
 		} catch(Exception exc) {
 			return new ResponseEntity<Proveedor>(HttpStatus.NOT_FOUND);
-		}
-		
+		}		
 	}
 
 }

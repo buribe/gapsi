@@ -19,19 +19,26 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.gapsi.ecommerce.dto.LoginDto;
 
+/**
+ * Clase controlador para ofrecer los componentes y servicios a página de inicio
+ */
 public class LoginControlador extends SelectorComposer<Window> {
 	private static final long serialVersionUID = 1L;
 	protected final Log log = LogFactory.getLog(getClass());
 	
 	private static final String strUrl = "http://localhost:8001/proveedor/login";
-	
-	//private LoginDto loginDto;
-	
+
+	//Declaración de componentes
 	@Wire
 	private Label lbBienvenida;
 	@Wire
 	private Label lbVersion;
 	
+	/**
+	 * Se ejecuta antes de cargar página zul
+	 * @param win es la referencia a la ventana de componentes
+	 * @return el área del círculo
+	 */
 	public void doAfterCompose(Window win) throws Exception {
 		super.doAfterCompose(win);		
 		log.debug("doAfterCompose()");
@@ -50,7 +57,22 @@ public class LoginControlador extends SelectorComposer<Window> {
 			exc.printStackTrace();
 		}
 	}
+	
+	/**
+	 * Evento del componente botón agregar
+	 */
+	@Listen("onClick=#aceptar")
+	public void aceptar() {
+		log.debug("aceptar()");
+		
+		Executions.sendRedirect("/proveedor.zul");
+	}
 
+	/**
+	 * Invoca servicio web para autenticar usuario
+	 * @param urlParaVisitar es el url de despliegue del servicio web
+	 * @return el objeto con información de la autenticación
+	 */
 	private LoginDto peticionHttpGet(String urlParaVisitar) throws Exception {
 		LoginDto loginDto = null;
 		URL url = new URL(urlParaVisitar);
@@ -67,6 +89,11 @@ public class LoginControlador extends SelectorComposer<Window> {
 		return loginDto;
 	}
 	
+	/**
+	 * Convierte estructura JSon a objeto
+	 * @param json_str es la cadena que contiene la estructura JSon
+	 * @return el objeto transformado
+	 */
 	private LoginDto convertirJSonAClase(String json_str) {
         ObjectMapper mapper = new ObjectMapper();
         LoginDto loginDto = new LoginDto();
@@ -80,12 +107,4 @@ public class LoginControlador extends SelectorComposer<Window> {
         
         return loginDto;
     }
-	
-	@Listen("onClick=#aceptar")
-	public void aceptar() {
-		log.debug("aceptar()");
-		
-		Executions.sendRedirect("/proveedor.zul");
-		
-	}
 }
